@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { send, init } from 'emailjs-com'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useToast } from '@chakra-ui/react'
+import env from 'react-dotenv'
 
 function useEmailService() {
   const navigate = useNavigate()
@@ -15,9 +16,11 @@ function useEmailService() {
   const form = useRef()
 
   const sendEmail = async (e) => {
-    const serviceId = 'service_yx5ug81'
-    const templateId = 'template_fbzpxw7'
-    const userID = 'QKsEfcw0FK54bik_O'
+    const serviceId = env.SERVICEID
+    const templateId = env.TEMPLATEID
+    const userID = env.USERID
+    const BASE_URL = env.REACT_APP_BASE_URL
+    console.log(BASE_URL)
     e.preventDefault()
     console.log('attac', attachment)
     setloading(true)
