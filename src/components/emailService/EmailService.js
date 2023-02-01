@@ -6,7 +6,8 @@ import './EmailService.css'
 import useEmailService from './hooks/useEmailService'
 
 export const EmailService = () => {
-  const { loading, form, sendEmail, data, navigate } = useEmailService()
+  const { loading, form, sendEmail, data, navigate, setAttachment } =
+    useEmailService()
   return (
     <div className="emaill">
       <div className="contactUs">
@@ -26,7 +27,11 @@ export const EmailService = () => {
                   <label>Message</label>
                   <input required name="message" />
                   <label>File</label>
-                  <input type="file" name="file" />
+                  <input
+                    type="file"
+                    onChange={(e) => setAttachment(e.target.files[0])}
+                    name="file"
+                  />
                 </div>
                 <div className="actbtn">
                   <button className="btn" type="submit" value="Send">

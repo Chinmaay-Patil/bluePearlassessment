@@ -8,6 +8,7 @@ function useEmailService() {
   const navigate = useNavigate()
   const [data, setData] = useState()
   const [loading, setloading] = useState(false)
+  const [attachment, setAttachment] = useState()
   const state = useLocation()
   const toast = useToast()
 
@@ -18,6 +19,7 @@ function useEmailService() {
     const templateId = 'template_fbzpxw7'
     const userID = 'QKsEfcw0FK54bik_O'
     e.preventDefault()
+    console.log('attac', attachment)
     setloading(true)
     init(userID)
     const toSend = {
@@ -25,6 +27,7 @@ function useEmailService() {
       to_name: e.target.user_name.value,
       to_email: e.target.user_email.value,
       message: e.target.message.value,
+      attachment: attachment,
     }
     await send(serviceId, templateId, toSend)
       .then((res) => {
@@ -51,11 +54,12 @@ function useEmailService() {
         })
       })
   }
+
   useEffect(() => {
     setData(state?.state)
   }, [state])
 
-  return { loading, form, sendEmail, data, navigate }
+  return { loading, form, sendEmail, data, navigate, setAttachment }
 }
 
 export default useEmailService
