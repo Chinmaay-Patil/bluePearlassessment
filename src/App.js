@@ -6,7 +6,7 @@ import Customers from './components/customers/Customers'
 import Auth from './components/auth/Auth'
 import { EmailService } from './components/emailService/EmailService'
 
-//defining routes to all pages
+//defining routes to all pagesssssss
 function App() {
   return (
     <div className="App">
